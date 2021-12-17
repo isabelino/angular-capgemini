@@ -7,7 +7,7 @@ import { LoginComponent } from "./usuarios/login/login.component";
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'/clientes',
+    redirectTo:'/login',
     pathMatch:'full'
   },
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
     component: FormComponent
   },
   {
-    path:'clientes/crear/:id',
+    path:'clientes/editar/:id',
     component: FormComponent
   },
   {

@@ -6,7 +6,7 @@
     <h5>Listado de Clientes</h5>
 
     <div class="my-2 text-left">
-      <button
+      <button *ngIf="authService.token"
         class="btn btn-rounded btn-primary"
         type="button"
         [routerLink]="['/clientes/crear']"
@@ -22,8 +22,9 @@
           <th scope="col">Nombre</th>
           <th scope="col">Apellido</th>
           <th scope="col">Email</th>
+          <th scope="col">Region</th>
           <th scope="col">Fecha</th>
-          <th scope="col">Accion</th>
+          <th *ngIf="authService.token" scope="col">Accion</th>
         </tr>
       </thead>
       <tbody>
@@ -32,9 +33,10 @@
           <td>{{item.nombre}}</td>
           <td>{{item.apellido}}</td>
           <td>{{item.email}}</td>
+          <td>{{item.region.nombre}}</td>
           <td>{{item.createdAt}}</td>
-          <td>
-            <button  class="btn btn-primary m-md-4"  [routerLink]="['/clientes/crear',item.id]">Editar</button>
+          <td *ngIf="authService.token">
+            <button  class="btn btn-primary m-md-4"  [routerLink]="['/clientes/editar',item.id]">Editar</button>
             <button  class="btn btn-danger" (click)="delete(item)" >Eliminar</button>
           </td>
         </tr>
