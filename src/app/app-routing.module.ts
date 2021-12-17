@@ -7,7 +7,7 @@ import { LoginComponent } from "./usuarios/login/login.component";
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'/login',
+    redirectTo:'/clientes',
     pathMatch:'full'
   },
   {
