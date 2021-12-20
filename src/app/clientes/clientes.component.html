@@ -29,7 +29,26 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of clientes">
-          <th scope="row">{{item.id}}</th>
+          <td scope="row">
+              <!--<button
+                type="button"
+                class="btn btn-success btn-sm"
+                [routerLink]="['/clientes/ver',item.id]">
+                {{item.id}}
+              </button>-->
+            <a [routerLink]="['/clientes/ver',item.id]">
+
+
+            <img *ngIf="item.imagen"
+            src="http://localhost:8087/api/uploads/img/{{item.imagen}}" alt="{{item.imagen}}" class="img-thumbnail rounded"
+            style="width:64px; cursor: pointer;">
+
+            <img *ngIf="!item?.imagen"
+              src="{{imageSrc}}" alt="Sin foto" class="img-thumbnail rounded"
+              style="width:64px; cursor: pointer;">
+            </a>
+
+          </td>
           <td>{{item.nombre}}</td>
           <td>{{item.apellido}}</td>
           <td>{{item.email}}</td>

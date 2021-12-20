@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { ClientesComponent } from "./clientes/clientes.component";
+import { DetalleComponent } from "./clientes/detalle/detalle.component";
 import { FormComponent } from "./clientes/form/form.component";
 import { LoginComponent } from "./usuarios/login/login.component";
 
@@ -23,9 +24,14 @@ const routes: Routes = [
     component: FormComponent
   },
   {
+    path:'clientes/ver/:id',
+    component: DetalleComponent
+  },
+  {
     path:'login',
     component: LoginComponent
   },
+
   {
     path: '**',
     redirectTo:''

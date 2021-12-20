@@ -13,10 +13,13 @@ import { ClienteService } from './cliente.service';
 export class ClientesComponent implements OnInit {
 
   clientes!: Cliente[];
+  imageSrc!:string;
 
   constructor(private clienteService:ClienteService,public authService: AuthService) { }
 
   ngOnInit(): void {
+
+    this.imageSrc = 'assets/avatar.jpg';
 
    this.clienteService.getClientes().subscribe(
      clientes => this.clientes = clientes

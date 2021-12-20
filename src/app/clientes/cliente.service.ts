@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of,Observable} from 'rxjs';
 import { Cliente } from './cliente';
@@ -11,6 +11,9 @@ import { Region } from './region';
   providedIn: 'root'
 })
 export class ClienteService {
+
+  fotoSeleccionada!: File;
+  progreso: number = 0;
 
   urlEndPoint:string = 'http://localhost:8087/api/clientes';
 
@@ -57,4 +60,29 @@ export class ClienteService {
       map( (response) => response as Region[] )
     );
   }
+
+
+  subirFoto(archivo: File, id:any): Observable<HttpEvent<any>> {
+
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id", id);
+
+    let httpHeaders = new HttpHeaders();
+    let token = this.authService.token;
+    if (token != null) {
+      httpHeaders = httpHeaders.append('Authorization', 'Bearer ' + token);
+    }
+
+    const req = new HttpRequest('POST', `${this.urlEndPoint}/upload`, formData, {
+      reportProgress: true,
+      headers: httpHeaders
+    });
+
+    return this.http.request(req).pipe(
+     resp => resp
+    );
+
+  }
+  
 }
